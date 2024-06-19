@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Build and Deploy
 
 on:
@@ -14,12 +12,18 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-      - name: install dependencies
+      
+      - name: Install dependencies
         run: npm install
+      
       - name: Build
         run: npm run build
         env:
           CI: false
+      
+      - name: List build output
+        run: ls -R dist
+      
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
