@@ -1,4 +1,4 @@
-import{r as j1,h as Y,H as W1,c as i2,g as U2,M as L4}from"./index-7a1d5df2.js";import{g as V5}from"./_commonjsHelpers-1789f0cf-54cc4630.js";const P5=`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+import{r as j1,h as Y,H as W1,c as i2,g as U2,M as L4}from"./index-a6821639.js";import{g as V5}from"./_commonjsHelpers-1789f0cf-4e2a68ed.js";const P5=`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_2087_4012)">
 <path d="M6.78286 22.8093C8.36049 23.5721 10.1303 24 12.0002 24C13.8701 24 15.64 23.5721 17.2176 22.8093L18.2611 12L17.2176 1.19072C15.64 0.427875 13.8701 0 12.0002 0C10.1303 0 8.36049 0.427875 6.78286 1.19072L5.73938 12L6.78286 22.8093Z" fill="#FFDA44"/>
 <path d="M17.2169 22.809C21.2309 20.8681 23.9995 16.7577 23.9995 12.0002C23.9995 7.24269 21.2309 3.13222 17.2169 1.19131V22.809Z" fill="#D80027"/>
