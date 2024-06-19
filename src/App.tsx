@@ -1,55 +1,41 @@
-import "./App.css";
-import { TonConnectButton } from "@tonconnect/ui-react";
-import { Counter } from "./components/Counter";
-import { Jetton } from "./components/Jetton";
-import { TransferTon } from "./components/TransferTon";
-import styled from "styled-components";
-import { Button, FlexBoxCol, FlexBoxRow } from "./components/styled/styled";
-import { useTonConnect } from "./hooks/useTonConnect";
-import { CHAIN } from "@tonconnect/protocol";
-import "@twa-dev/sdk";
+import { CapsuleModal, Environment, CapsuleWeb } from "@usecapsule/react-sdk";
+import { useState } from "react";
+import "@usecapsule/react-sdk/styles.css";
 
-const StyledApp = styled.div`
-  background-color: #e8e8e8;
-  color: black;
+const API_KEY = "d0b61c2c8865aaa2fb12886651627271";
 
-  @media (prefers-color-scheme: dark) {
-    background-color: #222;
-    color: white;
-  }
-  min-height: 100vh;
-  padding: 20px 20px;
-`;
+const ENVIRONMENT = Environment.BETA;
 
-const AppContainer = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-`;
+const capsuleClient = new CapsuleWeb(ENVIRONMENT, API_KEY);
 
 function App() {
-  const { network } = useTonConnect();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [walletAddress, setWalletAddress] = useState("");
+
+  const handleOnClose = async () => {
+    if (await capsuleClient.isFullyLoggedIn()) {
+      const wallets = capsuleClient.getWallets();
+      const wallet = Object.values(wallets)[0];
+      setWalletAddress(wallet.address!);
+    }
+    setIsModalOpen(false);
+  };
 
   return (
-    <StyledApp>
-      <AppContainer>
-        <FlexBoxCol>
-          <FlexBoxRow>
-            <TonConnectButton />
-            <Button>
-              {network
-                ? network === CHAIN.MAINNET
-                  ? "mainnet"
-                  : "testnet"
-                : "N/A"}
-            </Button>
-          </FlexBoxRow>
-          <Counter />
-          <TransferTon />
-          <Jetton />
-        </FlexBoxCol>
-      </AppContainer>
-    </StyledApp>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}>
+      {walletAddress && <p>Capsule Wallet Address: {walletAddress}</p>}
+      <button onClick={() => setIsModalOpen(true)}>Open Capsule Modal</button>
+      <CapsuleModal isOpen={isModalOpen} onClose={handleOnClose} capsule={capsuleClient} />
+    </div>
   );
 }
 
 export default App;
+  
